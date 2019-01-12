@@ -1,0 +1,83 @@
+{
+  "name": "web-scrapper-etl-typescript-server",
+  "version": "1.0.0",
+  "description": "Web scrapper ETL - server",
+  "engines": {
+    "node": "8.9.4",
+    "yarn": "1.12.3"
+  },
+  "main": "build/main/server.js",
+  "typings": "build/main/server.d.ts",
+  "module": "build/module/server.js",
+  "repository": "https://github.com/Bearsie/web-scrapper-etl-typescript",
+  "scripts": {
+    "info": "npm-scripts-info",
+    "install:app": "yarn install:server && yarn install:client",
+    "install:client": "cd client && yarn install",
+    "install:server": "yarn install",
+    "start": "run-s build run",
+    "run": "run-p run:*",
+    "run:client": "cd client && yarn build && serve -s build",
+    "run:server": "node build/main/server",
+    "start:dev": "run-s clean compile watch",
+    "watch": "concurrently \"yarn run compile --watch\" \"yarn run watch:server\" \"yarn run watch:client\"",
+    "watch:client": "cd client && yarn start",
+    "watch:server": "nodemon build/main/server",
+    "build": "run-s clean compile",
+    "clean": "trash build lint",
+    "compile": "tsc -p tsconfig.json",
+    "lint": "tslint --project . && prettier \"src/**/*.ts\" --list-different",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.ts\" --write",
+    "fix:tslint": "tslint --fix --project .",
+    "doc": "run-s doc:html && opn build/docs/index.html",
+    "doc:html": "typedoc src/ --target ES6 --mode file --out build/docs --hideGenerator --name ETL-Project-Server-Documentation",
+    "doc:md": "typedoc src/ --target ES6 --mode file --out build/docs --theme markdown --hideGenerator",
+    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs"
+  },
+  "scripts-info": {
+    "info": "Display information about the package scripts",
+    "build": "Clean and compile the project",
+    "fix": "Try to automatically fix any linting problems",
+    "test": "Lint and unit test the project",
+    "doc": "Generate HTML API documentation and open it in a browser",
+    "doc:md": "Generate Markdown API documentation"
+  },
+  "keywords": [],
+  "author": "Wojciech Niedzwiedz",
+  "license": "MIT",
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
+  "dependencies": {
+    "axios": "0.18.0",
+    "cheerio": "1.0.0-rc.2",
+    "cors": "2.8.5",
+    "express": "4.16.4",
+    "lodash": "4.17.11",
+    "mongoose": "5.3.15"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "7.1.0",
+    "@types/cheerio": "0.22.10",
+    "@types/cors": "2.8.4",
+    "@types/express": "4.16.0",
+    "@types/mongoose": "5.3.3",
+    "@types/node": "10.12.11",
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "concurrently": "4.1.0",
+    "gh-pages": "2.0.0",
+    "nodemon": "1.18.7",
+    "npm-run-all": "4.1.5",
+    "opn-cli": "4.0.0",
+    "prettier": "1.14.3",
+    "trash-cli": "1.4.0",
+    "tslint": "5.11.0",
+    "tslint-config-prettier": "1.15.0",
+    "typedoc": "0.13.0",
+    "typedoc-plugin-markdown": "1.1.19",
+    "typescript": "3.2.1"
+  }
+}
