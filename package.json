@@ -33,7 +33,7 @@
     "doc": "run-s doc:html && opn build/docs/index.html",
     "doc:html": "typedoc src/ --target ES6 --mode file --out build/docs --hideGenerator --name ETL-Project-Server-Documentation",
     "doc:md": "typedoc src/ --target ES6 --mode file --out build/docs --theme markdown --hideGenerator",
-    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs"
+    "doc:publish": "gh-pages -d build/docs"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
