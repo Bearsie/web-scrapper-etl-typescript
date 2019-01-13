@@ -104,10 +104,8 @@ type RatedAttribute = {
     };
 };
 
-const client = axios.create({ baseURL: 'http://localhost:8000' });
-
 export const searchProducts = async (keyword: string) => (
-    await client.post<{ succeed: true; data: SearchTypes; error?: string; }>('search', { keyword })
+    await axios.post<{ succeed: true; data: SearchTypes; error?: string; }>('search', { keyword })
 ).data;
 
 export type ExtractProductResponse = {
@@ -117,7 +115,7 @@ export type ExtractProductResponse = {
 }
 
 export const extractProductDetails = async (products: Product[]) => (
-    await client.post<ExtractProductResponse[]>('extract', products)
+    await axios.post<ExtractProductResponse[]>('extract', products)
 ).data;
 
 export type TransformProductResponse = {
@@ -127,7 +125,7 @@ export type TransformProductResponse = {
 }
 
 export const transformProductDetails = async (productsDetails: ProductDetails[]) => (
-    await client.post<TransformProductResponse[]>('transform', productsDetails)
+    await axios.post<TransformProductResponse[]>('transform', productsDetails)
 ).data;
 
 export type SaveProductResponse = {
@@ -137,27 +135,27 @@ export type SaveProductResponse = {
 }
 
 export const saveProducts = async (product: TransformedProduct[]) => (
-    await client.post<SaveProductResponse[]>('load', product)
+    await axios.post<SaveProductResponse[]>('load', product)
 ).data;
 
 export const getProducts = async () => (
-    await client.get<TransformedProduct[]>('products')
+    await axios.get<TransformedProduct[]>('products')
 ).data;
 
 export const updateProduct = async (productId: number) => (
-    await client.patch(`products/${productId}`)
+    await axios.patch(`products/${productId}`)
 ).data;
 
 export const deleteProducts = async () => (
-    await client.delete('products')
+    await axios.delete('products')
 ).data;
 
 export const deleteProduct = async (productId: number) => (
-    await client.delete(`products/${productId}`)
+    await axios.delete(`products/${productId}`)
 ).data
 
 export const deleteOpinion = async (opinionId: string) => (
-    await client.delete(`opinions/${opinionId}`)
+    await axios.delete(`opinions/${opinionId}`)
 ).data;
 
 export type SavedProductInfo = LoadTypes;
