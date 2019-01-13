@@ -33,10 +33,10 @@ class Home extends PureComponent<Props> {
                 <Typography className={classes.header} align="center" variant="h4">Welcome!</Typography>
                 <Paper className={classes.panel} elevation={8}>
                     <Typography component="p">
-                        On this page you can to search for opinions about products from website www.euro.com.pl,
-                        extracts them and store in database, that you can easily explore.
-                        Data can be filtered, sorted and exported to *.csv file (all data, all opinions for product)
-                        and also every opinion can be exported to *.txt file.
+                        Client-server application that allows to search for opinions about products from website
+                        <b> www.euro.com.pl</b>, extracts and store them in database. Stored data can be explored, updated,
+                        filtered, sorted and exported to *.csv file (all data, all opinions for product)
+                        and to *.txt file (every single opinion).
                     </Typography>
                 </Paper>
                 <Paper className={classes.panel} elevation={8}>
